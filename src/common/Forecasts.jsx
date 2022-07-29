@@ -1,0 +1,77 @@
+import React, { useState } from "react";
+import { Card } from "react-bootstrap";
+import moment from "moment";
+
+function Forecasts(props) {
+  const [cardIsActive, setCardIsActive] = useState(false);
+  const weatherType = props.weatherType.charAt(0).toUpperCase() + props.weatherType.slice(1);
+  let temp;
+  if (props.minTemp) {
+    temp = (
+      <>
+        {parseInt(props.minTemp - 273.15)}°C - {parseInt(props.maxTemp - 273.15)}°C
+      </>
+    );
+  } else {
+    temp = <>{parseInt(props.temp - 273.15)}°C</>;
+  }
+  const weatherIcon = `http://openweathermap.org/img/wn/${props.weatherIcon}@2x.png`;
+
+  function handleExpansion(event) {
+    event.target.classList.add(".card-expand");
+    console.log("hello");
+  }
+
+  return (
+    <Card style={{ width: "18rem" }} variant="success" className={`card shadow p-3 rounded ${cardIsActive ? "card-expand" : ""}`} onClick={() => setCardIsActive(!cardIsActive)}>
+      <Card.Body>
+        {props.date ? (
+          <Card.Title className="pb-3">{moment.unix(props.date).format("dddd - Do of MMMM")}</Card.Title>
+        ) : (
+          <Card.Title className="pb-3">
+            {props.city} - {props.country}
+          </Card.Title>
+        )}
+        <div className="card-details">
+          {cardIsActive ? (
+            <div className="card-details-text">
+              <div>
+                <Card.Subtitle>{weatherType}</Card.Subtitle>
+                <Card.Text className="card-details-border">
+                  <span className="d-block">Cloud cover: {props.cloudCover}%</span>
+                  Temp: {temp}
+                </Card.Text>
+              </div>
+              <div>
+                <Card.Subtitle>Wind</Card.Subtitle>
+                <Card.Text className="card-details-border">
+                  <span className="d-block">{props.windSpeed} m/s</span> <i className="fas fa-long-arrow-alt-up fa-lg" style={{ transform: `rotate(${props.windDirection * 2}deg)` }}></i>
+                </Card.Text>
+              </div>
+              <div>
+                <Card.Subtitle>Wind</Card.Subtitle>
+                <Card.Text className="card-details-border">Windy</Card.Text>
+              </div>
+            </div>
+          ) : (
+            <div>
+              <Card.Subtitle>{weatherType}</Card.Subtitle>
+
+              <Card.Text>
+                <span className="d-block">Cloud cover: {props.cloudCover}%</span>
+                Temp: {temp}
+              </Card.Text>
+            </div>
+          )}
+          {/* <div>
+            <Card.Subtitle>{props.weatherType}</Card.Subtitle>
+            <Card.Text className="">{temp}</Card.Text>
+          </div> */}
+          <img className="weatherImg" src={weatherIcon} alt={props.weatherType} />
+        </div>
+      </Card.Body>
+    </Card>
+  );
+}
+
+export default Forecasts;
