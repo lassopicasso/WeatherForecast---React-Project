@@ -20,7 +20,7 @@ function Forecasts(props) {
   } else {
     temp = <>{parseInt(props.temp - 273.15)}°C</>;
   }
-  const weatherIcon = `http://openweathermap.org/img/wn/${props.weatherIcon}@2x.png`;
+  const weatherIcon = `https://openweathermap.org/img/wn/${props.weatherIcon}@2x.png`;
 
   useEffect(() => {
     if (count) {

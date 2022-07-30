@@ -1,10 +1,10 @@
 import React from "react";
 //https://react-chartjs-2.js.org/examples/multitype-chart/
-import { Chart as ChartJS, LinearScale, CategoryScale, BarElement, PointElement, LineElement, Legend, Tooltip } from "chart.js";
+import { Chart as ChartJS, LinearScale, LineController, CategoryScale, BarElement, PointElement, LineElement, Legend, Tooltip } from "chart.js";
 import { Chart } from "react-chartjs-2";
 import moment from "moment";
 
-ChartJS.register(LinearScale, CategoryScale, BarElement, PointElement, LineElement, Legend, Tooltip);
+ChartJS.register(LinearScale, CategoryScale, BarElement, LineController, PointElement, LineElement, Legend, Tooltip);
 
 function dataStuff(labels, temp, windSpeed, rain) {
   return {
