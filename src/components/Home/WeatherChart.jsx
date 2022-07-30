@@ -16,7 +16,6 @@ function dataStuff(labels, temp, windSpeed, rain) {
 
         color: "rgb(255, 99, 132)",
         borderColor: "rgb(255, 99, 132)",
-        color: "black",
         borderWidth: 2,
         fill: false,
         data: temp,
@@ -137,7 +136,7 @@ function weatherChart({ weatherToday }) {
 
   return (
     <div className="chart-wrapper">
-      <Chart type="bar" data={data} options={options} scales={scales} />;
+      <Chart type="bar" data={data} options={options} scales={scales} />
     </div>
   );
 }

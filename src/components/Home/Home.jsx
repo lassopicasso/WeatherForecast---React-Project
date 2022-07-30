@@ -54,6 +54,7 @@ function Home() {
       }
     }
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [region]);
 
   function onSubmit(data) {
@@ -120,6 +121,7 @@ function Home() {
                 windSpeed={forecastDay.wind_speed}
                 windDirection={forecastDay.wind_deg}
                 cloudCover={forecastDay.clouds}
+                humidity={forecastDay.humidity}
               />
             );
           })}

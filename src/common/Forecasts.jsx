@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import { Card } from "react-bootstrap";
 import moment from "moment";
+import { useEffect } from "react";
 
 function Forecasts(props) {
   const [cardIsActive, setCardIsActive] = useState(false);
+  const [delayWeatherInfo, setDelayWeatherInfo] = useState(false);
+  const [displayFullWeatherInfo, setDisplayFullWeatherInfo] = useState(false);
+  //Added count so when initial render the useEffect won't run the functions.
+  const [count, setCount] = useState(0);
   const weatherType = props.weatherType.charAt(0).toUpperCase() + props.weatherType.slice(1);
   let temp;
   if (props.minTemp) {
@@ -17,13 +22,39 @@ function Forecasts(props) {
   }
   const weatherIcon = `http://openweathermap.org/img/wn/${props.weatherIcon}@2x.png`;
 
-  function handleExpansion(event) {
-    event.target.classList.add(".card-expand");
-    console.log("hello");
-  }
+  useEffect(() => {
+    if (count) {
+      if (!displayFullWeatherInfo) {
+        setTimeout(() => {
+          setDisplayFullWeatherInfo(!displayFullWeatherInfo);
+          console.log("hello");
+        }, 400);
+      } else {
+        setDisplayFullWeatherInfo(!displayFullWeatherInfo);
+      }
+
+      //According to following article, the timeout need to be cleared to avoid adverse consequences https://felixgerschau.com/react-hooks-settimeout/
+      return () =>
+        clearTimeout(() => {
+          setTimeout(function () {
+            setDisplayFullWeatherInfo(!displayFullWeatherInfo);
+          }, 800);
+        });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [delayWeatherInfo]);
 
   return (
-    <Card style={{ width: "18rem" }} variant="success" className={`card shadow p-3 rounded ${cardIsActive ? "card-expand" : ""}`} onClick={() => setCardIsActive(!cardIsActive)}>
+    <Card
+      style={{ width: "18rem" }}
+      variant="success"
+      className={`card shadow p-3 rounded ${cardIsActive ? "card-expand" : ""} `}
+      onClick={function () {
+        setCardIsActive(!cardIsActive);
+        setCount(1);
+        setDelayWeatherInfo(!delayWeatherInfo);
+      }}
+    >
       <Card.Body>
         {props.date ? (
           <Card.Title className="pb-3">{moment.unix(props.date).format("dddd - Do of MMMM")}</Card.Title>
@@ -33,7 +64,7 @@ function Forecasts(props) {
           </Card.Title>
         )}
         <div className="card-details">
-          {cardIsActive ? (
+          {displayFullWeatherInfo ? (
             <div className="card-details-text">
               <div>
                 <Card.Subtitle>{weatherType}</Card.Subtitle>
@@ -55,11 +86,12 @@ function Forecasts(props) {
             </div>
           ) : (
             <div>
-              <Card.Subtitle>{weatherType}</Card.Subtitle>
+              <Card.Subtitle>Weather</Card.Subtitle>
 
               <Card.Text>
-                <span className="d-block">Cloud cover: {props.cloudCover}%</span>
-                Temp: {temp}
+                {weatherType}
+                <span className="d-block">Temp: {temp}</span>
+                {props.windSpeed} m/s
               </Card.Text>
             </div>
           )}

@@ -39,6 +39,7 @@ function Favorites() {
         setLoading(false);
       }
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (loading) {
@@ -55,7 +56,7 @@ function Favorites() {
       </Container>
     );
   }
-  console.log(currentWeather);
+
   return (
     <Container>
       <Heading title="Favorites" />
@@ -64,7 +65,20 @@ function Favorites() {
       </div>
       <Row className="forecast-container m-auto">
         {currentWeather.map(function (current) {
-          return <Forecasts city={current.city} country={current.country} temp={current.temp} weatherType={current.weather[0].description} weatherIcon={current.weather[0].icon} key={current.city} windSpeed={current.wind_speed} windDirection={current.wind_deg} cloudCover={current.clouds} />;
+          return (
+            <Forecasts
+              city={current.city}
+              country={current.country}
+              temp={current.temp}
+              weatherType={current.weather[0].description}
+              weatherIcon={current.weather[0].icon}
+              key={current.city}
+              windSpeed={current.wind_speed}
+              windDirection={current.wind_deg}
+              cloudCover={current.clouds}
+              humidity={current.humidity}
+            />
+          );
         })}
       </Row>
     </Container>
