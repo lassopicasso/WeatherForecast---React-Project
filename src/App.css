@@ -101,7 +101,7 @@ form label {
 
 .card {
   background-color: rgba(184, 234, 188, 0.8);
-  transition: 1.2s;
+  transition: 0.8s;
   cursor: pointer;
 }
 
