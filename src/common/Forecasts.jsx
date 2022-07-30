@@ -67,10 +67,18 @@ function Forecasts(props) {
           {displayFullWeatherInfo ? (
             <div className="card-details-text">
               <div>
-                <Card.Subtitle>{weatherType}</Card.Subtitle>
+                <Card.Subtitle>Weather Type</Card.Subtitle>
                 <Card.Text className="card-details-border">
+                  {weatherType}
                   <span className="d-block">Cloud cover: {props.cloudCover}%</span>
+                </Card.Text>
+              </div>
+              <div>
+                <Card.Subtitle>Temperature</Card.Subtitle>
+                <Card.Text className="card-details-border">
                   Temp: {temp}
+                  <span className="d-block">Humidity: {props.humidity}%</span>
+                  {!props.minTemp ? `Feels like: ${parseInt(props.feelsLike - 273.15)}°C` : ""}
                 </Card.Text>
               </div>
               <div>
@@ -78,10 +86,6 @@ function Forecasts(props) {
                 <Card.Text className="card-details-border">
                   <span className="d-block">{props.windSpeed} m/s</span> <i className="fas fa-long-arrow-alt-up fa-lg" style={{ transform: `rotate(${props.windDirection * 2}deg)` }}></i>
                 </Card.Text>
-              </div>
-              <div>
-                <Card.Subtitle>Wind</Card.Subtitle>
-                <Card.Text className="card-details-border">Windy</Card.Text>
               </div>
             </div>
           ) : (

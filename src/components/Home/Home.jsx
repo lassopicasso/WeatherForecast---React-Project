@@ -89,7 +89,7 @@ function Home() {
       </Container>
     );
   }
-
+  console.log(forecast);
   return (
     <Container>
       <Heading title="Weather Forecast" />

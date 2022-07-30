@@ -56,7 +56,7 @@ function Favorites() {
       </Container>
     );
   }
-
+  console.log(currentWeather);
   return (
     <Container>
       <Heading title="Favorites" />
@@ -77,6 +77,7 @@ function Favorites() {
               windDirection={current.wind_deg}
               cloudCover={current.clouds}
               humidity={current.humidity}
+              feelsLike={current.feels_like}
             />
           );
         })}
