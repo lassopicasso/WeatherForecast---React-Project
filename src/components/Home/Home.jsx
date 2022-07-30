@@ -22,7 +22,7 @@ function Home() {
     async function fetchData() {
       setSubmitting(true);
       try {
-        const geoResponse = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${region}&appid=94769f5dc169df80831de41cd99af1f5`);
+        const geoResponse = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${region}&appid=94769f5dc169df80831de41cd99af1f5`);
         if (geoResponse.ok) {
           const geoData = await geoResponse.json();
           //If city is not found
