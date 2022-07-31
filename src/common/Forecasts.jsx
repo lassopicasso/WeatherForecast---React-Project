@@ -10,6 +10,7 @@ function Forecasts(props) {
   //Added count so when initial render the useEffect won't run the functions.
   const [count, setCount] = useState(0);
   const weatherType = props.weatherType.charAt(0).toUpperCase() + props.weatherType.slice(1);
+  console.log(props.rain);
   let temp;
   if (props.minTemp) {
     temp = (
@@ -43,8 +44,11 @@ function Forecasts(props) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [delayWeatherInfo]);
-  if (props.rain) {
-    console.log(props.rain["1h"]);
+  let rain;
+  if (props.rain && typeof props.rain === "number") {
+    rain = props.rain;
+  } else if (props.rain) {
+    rain = props.rain["1h"];
   }
   return (
     <Card
@@ -72,7 +76,7 @@ function Forecasts(props) {
                 <Card.Subtitle>Weather Type</Card.Subtitle>
                 <Card.Text className="card-details-border">
                   {weatherType}
-                  <span className="d-block">{props.rain ? "Rain: " + props.rain + "mm" : "Rain: 0 mm"}</span>
+                  <span className="d-block">{rain ? "Rain: " + rain + "mm" : "Rain: 0 mm"}</span>
                   <span className="d-block">Cloud cover: {props.cloudCover}%</span>
                   {/* {props.rain ? "Rain: " + props.rain["1h"] + "mm"} */}
                 </Card.Text>
@@ -98,7 +102,7 @@ function Forecasts(props) {
 
               <Card.Text>
                 {weatherType}
-                <span className="d-block">{props.rain ? "Rain: " + props.rain + "mm" : "Rain: 0 mm"}</span>
+                <span className="d-block">{rain ? "Rain: " + rain + "mm" : "Rain: 0 mm"}</span>
                 Temp: {temp}
                 {/* {props.windSpeed} m/s */}
                 {/* <span className="d-block"> {props.rain["1th"] !== null ? props.rain["1h"] + "mm" : console.log("doesn't work")}</span> */}

@@ -110,6 +110,7 @@ function Home() {
       {cityFound ? (
         <Row className="forecast-container m-auto ">
           {forecast.map(function (forecastDay) {
+            console.log(forecastDay.rain);
             return (
               <Forecasts
                 date={forecastDay.dt}
