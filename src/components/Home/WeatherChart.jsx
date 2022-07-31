@@ -72,6 +72,8 @@ function dataOptions(temp, rain) {
       A: {
         title: {
           text: "Temp. °C",
+          color: "darkred",
+
           display: true,
           font: {
             weight: "bold",
@@ -97,6 +99,7 @@ function dataOptions(temp, rain) {
         title: {
           text: "24 Hours",
           display: true,
+          color: "darkblue",
           font: {
             weight: "bold",
             size: 16,

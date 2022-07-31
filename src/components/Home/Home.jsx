@@ -9,7 +9,10 @@ import WeatherChart from "./WeatherChart";
 function Home() {
   const [weatherData, setWeatherData] = useState({});
   const [forecast, setForecast] = useState({});
-  const [region, setRegion] = useState("Oslo");
+  const [region, setRegion] = useState(function () {
+    let lastVisited = JSON.parse(localStorage.getItem("lastVisited"));
+    return lastVisited === null ? "Oslo" : lastVisited;
+  });
   const [country, setCountry] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -32,6 +35,7 @@ function Home() {
             setCityFound(true);
             setCountry(geoData[0].country);
             setRegion(geoData[0].name);
+            localStorage.setItem("lastVisited", JSON.stringify(geoData[0].name));
             const lat = geoData[0].lat;
             const lon = geoData[0].lon;
             const weatherResponse = await fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&appid=94769f5dc169df80831de41cd99af1f5`);

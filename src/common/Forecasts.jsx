@@ -84,7 +84,7 @@ function Forecasts(props) {
               <div>
                 <Card.Subtitle>Temperature</Card.Subtitle>
                 <Card.Text className="card-details-border">
-                  Temp: {temp}
+                  Temp: <span className="card-temperatur">{temp}</span>
                   <span className="d-block">Humidity: {props.humidity}%</span>
                   {!props.minTemp ? `Feels like: ${parseInt(props.feelsLike - 273.15)}°C` : ""}
                 </Card.Text>
@@ -103,7 +103,7 @@ function Forecasts(props) {
               <Card.Text>
                 {weatherType}
                 <span className="d-block">{rain ? "Rain: " + rain + "mm" : "Rain: 0 mm"}</span>
-                Temp: {temp}
+                Temp: <span className="card-temperatur">{temp}</span>
                 {/* {props.windSpeed} m/s */}
                 {/* <span className="d-block"> {props.rain["1th"] !== null ? props.rain["1h"] + "mm" : console.log("doesn't work")}</span> */}
               </Card.Text>

@@ -127,6 +127,11 @@ form label {
   flex: 0.9;
 }
 
+.card-temperatur {
+  color: rgba(173, 23, 8, 1);
+  font-weight: bold;
+}
+
 /* .card-details-border {
   border-left: 2px dotted lightblue;
   padding: 5px;
