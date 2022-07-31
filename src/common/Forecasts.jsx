@@ -43,7 +43,9 @@ function Forecasts(props) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [delayWeatherInfo]);
-
+  if (props.rain) {
+    console.log(props.rain["1h"]);
+  }
   return (
     <Card
       style={{ width: "18rem" }}
@@ -57,7 +59,7 @@ function Forecasts(props) {
     >
       <Card.Body>
         {props.date ? (
-          <Card.Title className="pb-3">{moment.unix(props.date).format("dddd - Do of MMMM")}</Card.Title>
+          <Card.Title className="pb-3">{moment.unix(props.date).format("dddd - Do of MMM  ")}</Card.Title>
         ) : (
           <Card.Title className="pb-3">
             {props.city} - {props.country}
@@ -70,7 +72,9 @@ function Forecasts(props) {
                 <Card.Subtitle>Weather Type</Card.Subtitle>
                 <Card.Text className="card-details-border">
                   {weatherType}
+                  <span className="d-block">{props.rain ? "Rain: " + props.rain + "mm" : "Rain: 0 mm"}</span>
                   <span className="d-block">Cloud cover: {props.cloudCover}%</span>
+                  {/* {props.rain ? "Rain: " + props.rain["1h"] + "mm"} */}
                 </Card.Text>
               </div>
               <div>
@@ -94,8 +98,10 @@ function Forecasts(props) {
 
               <Card.Text>
                 {weatherType}
-                <span className="d-block">Temp: {temp}</span>
-                {props.windSpeed} m/s
+                <span className="d-block">{props.rain ? "Rain: " + props.rain + "mm" : "Rain: 0 mm"}</span>
+                Temp: {temp}
+                {/* {props.windSpeed} m/s */}
+                {/* <span className="d-block"> {props.rain["1th"] !== null ? props.rain["1h"] + "mm" : console.log("doesn't work")}</span> */}
               </Card.Text>
             </div>
           )}

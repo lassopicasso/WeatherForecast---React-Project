@@ -7,6 +7,10 @@ import moment from "moment";
 ChartJS.register(LinearScale, CategoryScale, BarElement, LineController, BarController, PointElement, LineElement, Legend, Tooltip);
 
 function dataStuff(labels, temp, windSpeed, rain) {
+  console.log(rain);
+  rain = rain.map((hour) => {
+    return hour * 3;
+  });
   return {
     labels,
     datasets: [

@@ -65,6 +65,11 @@ function Favorites() {
       </div>
       <Row className="forecast-container m-auto">
         {currentWeather.map(function (current) {
+          if (current.rain) {
+            console.log(current.city);
+          } else {
+            console.log("Failed: " + current.city);
+          }
           return (
             <Forecasts
               city={current.city}
@@ -78,6 +83,7 @@ function Favorites() {
               cloudCover={current.clouds}
               humidity={current.humidity}
               feelsLike={current.feels_like}
+              rain={current.rain ? current.rain["1th"] : undefined}
             />
           );
         })}

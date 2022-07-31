@@ -121,6 +121,7 @@ function Home() {
                 windSpeed={forecastDay.wind_speed}
                 windDirection={forecastDay.wind_deg}
                 cloudCover={forecastDay.clouds}
+                rain={forecastDay.rain}
                 humidity={forecastDay.humidity}
               />
             );

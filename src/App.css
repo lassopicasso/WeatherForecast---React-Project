@@ -78,6 +78,7 @@ h2,
 }
 .forecast-container {
   gap: 20px;
+  transition: 0.3s !important;
 }
 
 form label {
@@ -165,7 +166,6 @@ form label {
   overflow: auto;
 }
 .chart-container {
-  width: 800px;
   background-color: rgba(250, 250, 250, 0.61);
 }
 canvas {
