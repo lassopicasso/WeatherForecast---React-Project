@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { Container, Row } from "react-bootstrap";
+import { Container, Row, Alert } from "react-bootstrap";
 import Heading from "../Heading";
 import Forecasts from "../../common/Forecasts";
 
@@ -42,7 +42,7 @@ function Favorites() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (loading) {
+  if (loading && favorites.length !== 0) {
     return (
       <Container>
         <div className="loading">Loading...</div>
@@ -56,38 +56,42 @@ function Favorites() {
       </Container>
     );
   }
-  console.log(currentWeather);
   return (
     <Container>
       <Heading title="Favorites" />
+
       <div>
         <h2>Current Weather</h2>
       </div>
-      <Row className="forecast-container m-auto">
-        {currentWeather.map(function (current) {
-          if (current.rain) {
-            console.log(current.city);
-          } else {
-            console.log("Failed: " + current.city);
-          }
-          return (
-            <Forecasts
-              city={current.city}
-              country={current.country}
-              temp={current.temp}
-              weatherType={current.weather[0].description}
-              weatherIcon={current.weather[0].icon}
-              key={current.city}
-              windSpeed={current.wind_speed}
-              windDirection={current.wind_deg}
-              cloudCover={current.clouds}
-              humidity={current.humidity}
-              feelsLike={current.feels_like}
-              rain={current.rain ? current.rain["1th"] : undefined}
-            />
-          );
-        })}
-      </Row>
+      {favorites.length !== 0 ? (
+        <Row className="forecast-container m-auto">
+          {currentWeather.map(function (current) {
+            if (current.rain) {
+              console.log(current.city);
+            } else {
+              console.log("Failed: " + current.city);
+            }
+            return (
+              <Forecasts
+                city={current.city}
+                country={current.country}
+                temp={current.temp}
+                weatherType={current.weather[0].description}
+                weatherIcon={current.weather[0].icon}
+                key={current.city}
+                windSpeed={current.wind_speed}
+                windDirection={current.wind_deg}
+                cloudCover={current.clouds}
+                humidity={current.humidity}
+                feelsLike={current.feels_like}
+                rain={current.rain ? current.rain["1th"] : undefined}
+              />
+            );
+          })}
+        </Row>
+      ) : (
+        <Alert variant="warning">No favorites are chosen.</Alert>
+      )}
     </Container>
   );
 }

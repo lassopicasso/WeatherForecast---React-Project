@@ -10,7 +10,7 @@ function App() {
     <Router>
       <Navbar bg="light" expand="lg">
         <Container>
-          <Navbar.Brand className="text-uppercase">Module Assignment 2</Navbar.Brand>
+          <Navbar.Brand className="text-uppercase">Weather Forecast</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
