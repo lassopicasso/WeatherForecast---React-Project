@@ -9,7 +9,7 @@ body {
 body::before {
   z-index: -5;
   content: "";
-  position: absolute;
+  position: fixed;
   background-image: url("./images/pexels-pixabay-531880.jpg");
   background-position: center;
   background-repeat: no-repeat;
@@ -167,11 +167,11 @@ form label {
   overflow: hidden;
 }
 .chart-container {
-  background-color: rgba(250, 250, 250, 0.61);
+  color: rgba(250, 250, 250, 0.3);
 }
 canvas {
   height: 400px;
-  background-color: rgba(250, 250, 250, 0.35);
+  background-color: rgba(184, 192, 208, 0.7);
   overflow: auto;
   padding-right: 17px; /* Increase/decrease this value for cross-browser compatibility */
   box-sizing: content-box;
