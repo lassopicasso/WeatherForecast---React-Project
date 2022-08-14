@@ -20,7 +20,23 @@ body::before {
   left: 0px;
   opacity: 0.7;
 }
-
+#root {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  width: 100%;
+  min-height: 100vh;
+}
+footer {
+  width: 100%;
+  margin-top: 20px;
+  background-color: rgba(209, 231, 221, 0.8);
+}
+footer div {
+  margin: 20px;
+  text-align: center;
+  color: #ffa32b !important;
+  font-weight: bold;
+}
 h1 {
   margin-bottom: 20px;
 }
@@ -78,6 +94,7 @@ h2,
 }
 .forecast-container {
   gap: 20px;
+  justify-content: center;
   transition: 0.3s !important;
 }
 
@@ -104,6 +121,39 @@ form label {
   background-color: rgba(184, 234, 188, 0.8);
   transition: 0.8s;
   cursor: pointer;
+  position: relative;
+}
+.card__dropdown {
+  padding: 0;
+}
+.card__feature,
+.card__feature:hover {
+  background-color: rgba(184, 234, 188, 0.9);
+  font-weight: bold;
+  border: none;
+  padding: 5px;
+  text-decoration: none;
+  color: black;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.card__feature > * {
+  padding: 5px 10px !important;
+}
+.card__feature div {
+  flex: 1 1 0px;
+}
+
+.card__title,
+.card__feature img {
+  padding: 0 !important;
+  height: 40px;
+  width: 40px;
+}
+
+.card__collapse {
+  padding: 10px 10px;
 }
 
 .card:hover {
@@ -124,7 +174,7 @@ form label {
 }
 .card-details-text {
   text-align: center;
-  flex: 0.9;
+  flex: 1;
 }
 
 .card-temperatur {
@@ -163,21 +213,166 @@ form label {
   background: rgba(0, 0, 0, 0.6);
 }
 
+/* Chart and Current - Home */
+.card-current-home {
+  flex: 0.6;
+}
+.card-current-home .card-details-text {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.card-current-home img {
+  margin: auto;
+}
+
+.card-current-home,
+.chart-wrapper {
+  margin: auto;
+  cursor: default;
+}
+.home-currentAndGraph {
+  display: flex;
+  width: 100%;
+  margin: 20px auto;
+  gap: 20px;
+}
+.chart-wrapper {
+  flex: 1;
+}
+/* .home-currentAndgraph {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-bottom: 20px;
+  gap: 20px;
+  width: 80%;
+}
+.home-currentAndgraph ul {
+  list-style: none;
+  padding-left: 0;
+  margin: auto;
+}
+.home-currentAndgraph ul,
+.home-currentAndgraph .home__current-img {
+  padding: 10px;
+}
+.home_currentWeather-wrapper {
+  padding: 20px;
+  background-color: rgba(184, 234, 188, 0.8);
+  border-radius: 5px;
+  min-width: 450px !important;
+}
+.home_currentWeather-wrapper h3 {
+  margin-left: 20px;
+}
+.home__currentWeather {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  text-align: center;
+} */
+
 /* Chart */
 
 .chart-wrapper {
-  width: 50%;
+  width: 70% !important;
+  /* overflow-x: auto;
+  overflow-y: hidden; */
+}
+/* .chart-area {
+  width: 1000px;
+  height: 400px;
+} */
+
+/* .chart-wrapper {
   position: relative;
-  max-width: 800px;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
 }
-.chart-container {
+.chart-wrapper > cavcas {
+  position: absolute;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+} */
+/* .chart-container {
   color: rgba(250, 250, 250, 0.3);
-}
+} */
 canvas {
-  height: 400px;
+  /* height: 400px !important; */
+  width: 0;
+  height: 0;
+  overflow-x: scroll;
   background-color: rgba(184, 192, 208, 0.7);
-  overflow: auto;
+
   padding-right: 17px; /* Increase/decrease this value for cross-browser compatibility */
   box-sizing: content-box;
+}
+
+@media only screen and (max-width: 1400px) {
+  .home-currentAndgraph {
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 1200px) {
+  /* .home__currentWeather {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  } */
+  .chart-wrapper {
+    width: 100% !important;
+  }
+}
+@media only screen and (max-width: 1000px) {
+  .container {
+    max-width: 90%;
+  }
+  .home-currentAndGraph {
+    flex-direction: column-reverse;
+  }
+  .card-current-home .card-details-text {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  .chart-wrapper {
+    width: 80% !important;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .chart-wrapper {
+    width: 100% !important;
+  }
+  .home__currentWeather {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .home__current-img {
+    display: none;
+  }
+  @media only screen and (max-width: 700px) {
+    .weatherImg {
+      height: 50px;
+      width: auto;
+    }
+    .card {
+      width: 100% !important;
+    }
+    .home_currentWeather-wrapper {
+      min-width: 90% !important;
+    }
+  }
+
+  @media only screen and (max-width: 500px) {
+    .container {
+      max-width: 100%;
+    }
+    .card__feature div:nth-child(1),
+    .feature__arrow {
+      flex: 0.6 !important;
+    }
+  }
+  @media only screen and (max-width: 400px) {
+    .chart-wrapper {
+      display: none;
+    }
+  }
 }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import { Container, Row, Alert } from "react-bootstrap";
 import Heading from "../Heading";
-import Forecasts from "../../common/Forecasts";
+import Cards from "../../common/Cards";
 
 function Favorites() {
   const [currentWeather, setCurrentWeather] = useState([]);
@@ -56,26 +56,17 @@ function Favorites() {
       </Container>
     );
   }
-  console.log("hello");
   return (
     <Container>
       <Heading title="Favorites" />
-
       <div>
         <h2>Current Weather</h2>
       </div>
       {favorites.length !== 0 ? (
         <Row className="forecast-container m-auto">
           {currentWeather.map(function (current) {
-            console.log("hello");
-            console.log(current.rain);
-            if (current.rain) {
-              console.log(current.city);
-            } else {
-              console.log("Failed: " + current.city);
-            }
             return (
-              <Forecasts
+              <Cards
                 city={current.city}
                 country={current.country}
                 temp={current.temp}

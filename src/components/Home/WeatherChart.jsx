@@ -127,7 +127,9 @@ function weatherChart({ weatherToday }) {
   const options = dataOptions(temp, rain);
   return (
     <div className="chart-wrapper">
-      <Chart type="bar" data={data} options={options} />
+      <div className="chart-area">
+        <Chart type="bar" data={data} options={options} />
+      </div>
     </div>
   );
 }

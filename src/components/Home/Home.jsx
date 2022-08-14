@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Heading from "../Heading";
-import Forecasts from "../../common/Forecasts";
+import Cards from "../../common/Cards";
 import { Container, Row, Alert } from "react-bootstrap";
-
 import WeatherSearch from "./WeatherSearch";
 import WeatherChart from "./WeatherChart";
 
 function Home() {
   const [weatherData, setWeatherData] = useState({});
+  const [currentWeather, setCurrentWeather] = useState({});
   const [forecast, setForecast] = useState({});
   const [region, setRegion] = useState(function () {
     let lastVisited = JSON.parse(localStorage.getItem("lastVisited"));
@@ -42,6 +42,7 @@ function Home() {
             if (weatherResponse.ok) {
               let data = await weatherResponse.json();
               setWeatherData(data);
+              setCurrentWeather(data.current);
               setForecast(data.daily);
             } else {
               setError("An error occured");
@@ -73,7 +74,6 @@ function Home() {
       setFavorites((oldFavorites) => [...oldFavorites, region]);
       setFavorite(true);
     }
-    console.log(favorites);
   }
   useEffect(() => {
     localStorage.setItem("favorites", JSON.stringify(favorites));
@@ -93,7 +93,6 @@ function Home() {
       </Container>
     );
   }
-  console.log(forecast);
   return (
     <Container>
       <Heading title="Weather Forecast" />
@@ -110,28 +109,44 @@ function Home() {
         )}
       </div>
       <WeatherSearch onSubmit={onSubmit} searching={submitting} />
-      <WeatherChart weatherToday={weatherData.hourly} />
+
       {cityFound ? (
-        <Row className="forecast-container m-auto ">
-          {forecast.map(function (forecastDay) {
-            console.log(forecastDay.rain);
-            return (
-              <Forecasts
-                date={forecastDay.dt}
-                minTemp={forecastDay.temp.min}
-                maxTemp={forecastDay.temp.max}
-                weatherType={forecastDay.weather[0].description}
-                weatherIcon={forecastDay.weather[0].icon}
-                key={forecastDay.dt}
-                windSpeed={forecastDay.wind_speed}
-                windDirection={forecastDay.wind_deg}
-                cloudCover={forecastDay.clouds}
-                rain={forecastDay.rain}
-                humidity={forecastDay.humidity}
-              />
-            );
-          })}
-        </Row>
+        <>
+          <div className="home-currentAndGraph">
+            <WeatherChart weatherToday={weatherData.hourly} />
+            <Cards
+              currentHome={true}
+              temp={currentWeather.temp}
+              weatherType={currentWeather.weather[0].description}
+              weatherIcon={currentWeather.weather[0].icon}
+              windSpeed={currentWeather.wind_speed}
+              windDirection={currentWeather.wind_deg}
+              cloudCover={currentWeather.clouds}
+              rain={currentWeather.rain}
+              humidity={currentWeather.humidity}
+              feelsLike={currentWeather.feels_like}
+            />
+          </div>
+          <Row className="forecast-container m-auto ">
+            {forecast.map(function (forecastDay) {
+              return (
+                <Cards
+                  date={forecastDay.dt}
+                  minTemp={forecastDay.temp.min}
+                  maxTemp={forecastDay.temp.max}
+                  weatherType={forecastDay.weather[0].description}
+                  weatherIcon={forecastDay.weather[0].icon}
+                  key={forecastDay.dt}
+                  windSpeed={forecastDay.wind_speed}
+                  windDirection={forecastDay.wind_deg}
+                  cloudCover={forecastDay.clouds}
+                  rain={forecastDay.rain}
+                  humidity={forecastDay.humidity}
+                />
+              );
+            })}
+          </Row>
+        </>
       ) : (
         <Alert variant="danger">
           Oh no! Your search on <span className="region-failed">{region}</span> was not found! Please control your input and try again.

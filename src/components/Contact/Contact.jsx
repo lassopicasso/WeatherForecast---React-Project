@@ -24,7 +24,7 @@ function Contact() {
   });
 
   function onSubmit(data) {
-    console.log(data);
+    console.log("Data submitted: " + data);
   }
 
   return (
