@@ -92,6 +92,7 @@ h2,
 }
 
 .contact__container {
+  width: 90%;
   max-width: 500px;
   margin: auto;
   background-color: rgba(209, 231, 221, 0.6) !important;
