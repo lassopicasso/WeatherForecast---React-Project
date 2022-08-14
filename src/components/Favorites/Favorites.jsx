@@ -11,6 +11,7 @@ function Favorites() {
   let favorites = getFavorites();
 
   useEffect(() => {
+    document.title = "Weatherish - Favorites";
     favorites.map(async function (favorite) {
       try {
         const geoResponse = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${favorite}&appid=94769f5dc169df80831de41cd99af1f5`);

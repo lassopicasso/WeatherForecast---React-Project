@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Heading from "../Heading";
 import { Container, Form, Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
@@ -26,6 +26,10 @@ function Contact() {
   function onSubmit(data) {
     console.log("Data submitted: " + data);
   }
+
+  useEffect(() => {
+    document.title = "Weatherish - Contact";
+  }, []);
 
   return (
     <Container className="contact__container">

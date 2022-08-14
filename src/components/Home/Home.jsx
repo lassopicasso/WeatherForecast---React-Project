@@ -21,6 +21,9 @@ function Home() {
   const [favorites, setFavorites] = useState(getFavorites);
   const [favorite, setFavorite] = useState(favorites.includes(region));
   useEffect(() => {
+    document.title = "Weatherish";
+  }, []);
+  useEffect(() => {
     favorites.includes(region) ? setFavorite(true) : setFavorite(false);
     async function fetchData() {
       setSubmitting(true);

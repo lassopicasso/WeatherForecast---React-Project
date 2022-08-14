@@ -91,7 +91,7 @@ function Cards(props) {
         <Card className="card__dropdown">
           <Button className="card__feature" onClick={() => setOpen(!open)} aria-controls="example-collapse-text" aria-expanded={open}>
             {cardTitle}
-            <div>{temp} </div>
+            <div className="card-temperatur">{temp} </div>
             <img className="weatherImg" src={weatherIcon} alt={props.weatherType} />
             {open ? (
               <div className="feature__arrow">
@@ -119,7 +119,7 @@ function getCardTitle(props) {
     if (props.date) {
       return <Card.Title className="pb-3">{moment.unix(props.date).format("dddd - Do of MMM  ")}</Card.Title>;
     } else if (props.currentHome) {
-      return <Card.Title className="pb-3">Current</Card.Title>;
+      return <Card.Title className="pb-3 card-title__current-desktop">Current Weather</Card.Title>;
     } else {
       return (
         <Card.Title className="pb-3">

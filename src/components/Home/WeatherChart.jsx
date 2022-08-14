@@ -46,7 +46,7 @@ function dataOptions(temp, rain) {
         labels: {
           color: "black",
           font: {
-            size: 18,
+            size: 16,
             weight: "bold",
           },
         },
