@@ -51,7 +51,7 @@ function Cards(props) {
   }
 
   let cardTitle = getCardTitle(props);
-
+  console.log(props.currentHome);
   return (
     <>
       {window.innerWidth > 700 ? (
@@ -103,7 +103,7 @@ function Cards(props) {
               </div>
             )}
           </Button>
-          <Collapse className="card__collapse" in={open}>
+          <Collapse className="card__collapse" in={props.currentHome ? !open : open}>
             <div id="example-collapse-text">{fullWeatherInfo(props, rain, temp, weatherType)}</div>
           </Collapse>
         </Card>
