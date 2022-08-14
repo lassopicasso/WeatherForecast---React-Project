@@ -115,19 +115,18 @@ function weatherChart({ weatherToday }) {
   let temp = [];
   let rain = [];
   for (let i = 1; i <= 24; i++) {
-    if (i % 2 === 0) {
-      hours.push(moment.unix(weatherToday[i].dt).format("HHmm"));
-      temp.push(parseInt(weatherToday[i].temp - 273.15));
-      rain.push(weatherToday[i].rain ? weatherToday[i].rain["1h"] : 0);
+    if (window.innerWidth > 500 && i % 2 === 0) {
+      pushValues(i);
     }
-    // hours = hours.map((hour, index) => {
-    //   return index % 2 === 1 ? hour : "";
-    // });
+    if (window.innerWidth <= 500 && i % 3 === 1) {
+      pushValues(i);
+    }
   }
-
-  // hours = hours.map((hour, index) => {
-  //   return index % 2 === 1 ? hour : "";
-  // });
+  function pushValues(i) {
+    hours.push(moment.unix(weatherToday[i].dt).format("HHmm"));
+    temp.push(parseInt(weatherToday[i].temp - 273.15));
+    rain.push(weatherToday[i].rain ? weatherToday[i].rain["1h"] : 0);
+  }
 
   const data = dataStuff(hours, temp, rain);
   const options = dataOptions(temp, rain);
