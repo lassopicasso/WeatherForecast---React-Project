@@ -325,8 +325,8 @@ canvas {
     }
   }
   @media only screen and (max-width: 400px) {
-    .chart-wrapper {
+    /* .chart-wrapper {
       display: none;
-    }
+    } */
   }
 }
