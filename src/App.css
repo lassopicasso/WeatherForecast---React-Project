@@ -135,13 +135,14 @@ form label {
 .card__feature:hover {
   background-color: rgba(184, 234, 188, 0.9);
   font-weight: bold;
-  border: none;
+  border: none !important;
   padding: 5px;
   text-decoration: none;
   color: black;
   display: flex;
   justify-content: space-around;
   align-items: center;
+  box-shadow: none !important;
 }
 .card__feature > * {
   padding: 5px 10px !important;
@@ -323,10 +324,5 @@ canvas {
     .feature__arrow {
       flex: 0.6 !important;
     }
-  }
-  @media only screen and (max-width: 400px) {
-    /* .chart-wrapper {
-      display: none;
-    } */
   }
 }
