@@ -302,21 +302,6 @@ canvas {
     display: none;
   }
   @media only screen and (max-width: 700px) {
-    .navbar {
-      position: fixed;
-      width: 100%;
-      z-index: 10;
-    }
-    .container {
-      margin-bottom: 80px;
-    }
-    footer {
-      position: absolute;
-      bottom: 0;
-    }
-    h1 {
-      margin-top: 70px;
-    }
     .weatherImg {
       height: 50px;
       width: auto;
