@@ -77,7 +77,7 @@ function Cards(props) {
 
                     <Card.Text>
                       {weatherType}
-                      <span className="d-block">{rain ? "Rain: " + rain + "mm" : "Rain: 0 mm"}</span>
+                      <span className="d-block card-rain">{rain ? "Rain: " + rain + "mm" : "Rain: 0 mm"}</span>
                       Temp: <span className="card-temperatur">{temp}</span>
                     </Card.Text>
                   </div>
@@ -150,7 +150,7 @@ function fullWeatherInfo(props, rain, temp, weatherType, weatherIcon) {
           <Card.Subtitle>Weather</Card.Subtitle>
           <Card.Text className="card-details-border">
             {weatherType}
-            <span className="d-block">{rain ? "Rain: " + rain + "mm" : "Rain: 0 mm"}</span>
+            <span className="d-block card-rain">{rain ? "Rain: " + rain + "mm" : "Rain: 0 mm"}</span>
             <span className="d-block">Clouds: {props.cloudCover}%</span>
           </Card.Text>
         </div>

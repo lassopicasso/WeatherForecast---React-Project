@@ -193,7 +193,10 @@ form label {
   color: rgba(173, 23, 8, 1);
   font-weight: bold;
 }
-
+.card-rain {
+  color: blue;
+  font-weight: bold;
+}
 .weatherImg {
   transition: 1.2s;
   width: 75px;
