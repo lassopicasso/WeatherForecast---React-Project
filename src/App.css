@@ -31,8 +31,10 @@ body::before {
 footer {
   width: 100%;
   margin-top: 20px;
-  background-color: rgba(209, 231, 221, 0.8);
+  background-color: rgba(125, 146, 136, 0.8);
+  /* background-color: rgba(59, 70, 64, 0.688); */
 }
+
 footer div {
   margin: 20px;
   text-align: center;
