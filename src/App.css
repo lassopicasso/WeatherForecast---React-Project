@@ -312,6 +312,10 @@ canvas {
       height: 50px;
       width: auto;
     }
+    h1,
+    h2 {
+      color: #ffdc2b;
+    }
     .card {
       width: 100% !important;
     }
