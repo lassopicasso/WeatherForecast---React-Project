@@ -76,9 +76,9 @@ function Cards(props) {
                     <Card.Subtitle>Weather</Card.Subtitle>
 
                     <Card.Text>
-                      {weatherType}
+                      <span className="d-block"> {weatherType} </span>
+                      <span className="card-temperatur"> Temp: {temp}</span>
                       <span className="d-block card-rain">{rain ? "Rain: " + rain + "mm" : "Rain: 0 mm"}</span>
-                      Temp: <span className="card-temperatur">{temp}</span>
                     </Card.Text>
                   </div>
                   <img className="weatherImg" src={weatherIcon} alt={props.weatherType} />
