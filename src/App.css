@@ -183,7 +183,7 @@ form label {
 }
 .card-details-text {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   gap: 10px;
 }
 .card-details-text {
